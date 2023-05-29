@@ -11,23 +11,53 @@ body {
 
 #landingContainer {
   display: flex;
-  justify-content: center;
-  background-color: rebeccapurple;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(8, 9, 7, 0.939);
   height: 100vh;
   width: 100vw;
 }
 
-#startBtn {
+#startTitle {
+  color: #fff;
   margin-top: 20vh;
-  width: 100px;
-  height: 50px;
-  border-radius: 8px;
+  justify-content: center;
+  text-align: center;
+}
+
+#startBtn {
+  height: 60px;
+  width: 200px;
+  text-align: center;
+  font-family: "Pangolin", cursive;
+  text-transform: uppercase;
+  margin-top: 5vh;
+  background-color: #111111ad;
+  color: #fff;
+  border: 2px solid rgb(69, 222, 58);
+  border-radius: 0px;
+  padding: 18px 36px;
+  display: inline-block;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0 rgb(247, 255, 17);
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
+}
+
+#startBtn:hover {
+  box-shadow: inset 0 100px 0 0 rgb(69, 222, 58);
+  color: #eeff00;
 }
 
 #greeting {
   color: white;
   text-align: center;
-  margin-top: 20vh;
+  margin-top: 5vh;
 }
 
 .messageContainer {

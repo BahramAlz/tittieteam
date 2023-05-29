@@ -18,7 +18,7 @@ export function landing() {
     greeting();
     setTimeout(function () {
       removeGreeting();
-    }, 2000); // 5000 milliseconds = 5 seconds
+    }, 16000); // 5000 milliseconds = 5 seconds
   }
   runForFiveSeconds();
 }
