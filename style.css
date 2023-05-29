@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Pangolin&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -27,4 +28,31 @@ body {
   color: white;
   text-align: center;
   margin-top: 20vh;
+}
+
+.messageContainer {
+  font-family: "Pangolin", cursive;
+  text-transform: uppercase;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+}
+.messageContainer #hit {
+  justify-content: center;
+  font-size: 4rem;
+  text-align: center;
+  color: greenyellow;
+}
+.messageContainer #close {
+  justify-content: center;
+  font-size: 4rem;
+  text-align: center;
+  color: yellow;
+}
+.messageContainer #missed {
+  justify-content: center;
+  font-size: 4rem;
+  text-align: center;
+  color: red;
 }

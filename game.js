@@ -3,7 +3,7 @@ import { gsap } from "gsap";
 import { InteractionManager } from "three.interactive";
 
 export function game() {
-  //scene
+  // Scene setup
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(
     60,
@@ -11,52 +11,38 @@ export function game() {
     0.1,
     1000
   );
+  camera.position.z = 100;
 
-  //lights
-  const light = new THREE.AmbientLight(0x404040); // soft white light
+  // Lights
+  const light = new THREE.AmbientLight(0x404040); // Soft white light
   scene.add(light);
 
   const pointLight = new THREE.PointLight(0xffffff);
   pointLight.position.set(50, 50, 100);
   scene.add(pointLight);
 
-  //renderer
+  // Renderer
   const renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
-  //geometry/material - ball
+  // Geometry/Material - Ball
+  const activeBalls = [];
 
   function createBall(xPos, key) {
     const geometry = new THREE.SphereGeometry(4, 20, 10);
     const material = new THREE.MeshStandardMaterial({ color: 0xfffff });
     const sphere = new THREE.Mesh(geometry, material);
+    activeBalls.push({ sphere, key });
 
     document.addEventListener("keydown", function (event) {
       if (event.key === key) {
-        // Event for pressing the Q key
-        console.log("correct");
-        // Add your code here to handle the event
-      } else {
-        console.log("not right", event.key);
+        const activeBall = activeBalls.find((ball) => ball.key === key);
+        if (activeBall) {
+          checkBallHit(activeBall.sphere);
+        }
       }
     });
-
-    //click events (ball)
-    sphere.addEventListener("click", (event) => {
-      console.log(event);
-
-      if (event.distance > 67 && event.distance < 69) {
-        console.log("hit");
-      } else if (event.distance > 69 && event.distance < 75) {
-        console.log("that was close!");
-      } else if (event.distance > 62 && event.distance < 67) {
-        console.log("u missed");
-      } else {
-        console.log("dumbass");
-      }
-    });
-    interactionManager.add(sphere);
 
     sphere.position.set(xPos, 200, -300);
     scene.add(sphere);
@@ -66,7 +52,10 @@ export function game() {
       x: xPos,
       duration: 5,
       onComplete: () => {
-        // Ball reached the destination
+        const index = activeBalls.findIndex((ball) => ball.sphere === sphere);
+        if (index !== -1) {
+          activeBalls.splice(index, 1);
+        }
         scene.remove(sphere);
       },
       ease: "none",
@@ -83,39 +72,79 @@ export function game() {
     createBall(randomPos, key);
   }, 500);
 
-  //camera position
-  camera.position.z = 100;
-
-  //geometry/material - circle
+  // Geometry/Material - Circle
   const geometry2 = new THREE.RingGeometry(5, 4, 32);
   const material2 = new THREE.MeshBasicMaterial({
     color: 0xffff00,
     side: THREE.DoubleSide,
   });
+
   const leftCircle = new THREE.Mesh(geometry2, material2);
   leftCircle.position.set(-12, -25, 30);
   scene.add(leftCircle);
+
   const midCircle = new THREE.Mesh(geometry2, material2);
   midCircle.position.set(0, -25, 30);
   scene.add(midCircle);
+
   const rightCircle = new THREE.Mesh(geometry2, material2);
   rightCircle.position.set(12, -25, 30);
   scene.add(rightCircle);
 
-  //interaction manager for click
-  const interactionManager = new InteractionManager(
-    renderer,
-    camera,
-    renderer.domElement
-  );
+  let isMessageDisplayed = false;
 
-  //animation
+  function updateMessage(message, id) {
+    const container = document.querySelector(".messageContainer");
+    const messageElement = document.getElementById(id);
+
+    if (isMessageDisplayed) {
+      if (messageElement) {
+        container.removeChild(messageElement);
+      }
+      isMessageDisplayed = false;
+    }
+
+    const newMessageElement = document.createElement("div");
+    newMessageElement.id = id;
+    newMessageElement.textContent = message;
+    container.appendChild(newMessageElement);
+    isMessageDisplayed = true;
+
+    setTimeout(() => {
+      const messageToRemove = document.getElementById(id);
+      if (messageToRemove) {
+        container.removeChild(messageToRemove);
+      }
+      isMessageDisplayed = false;
+    }, 300);
+  }
+  // Check if a ball is inside its designated circle and handle the hit accordingly
+  function checkBallHit(ball) {
+    const ballPosition = ball.position;
+    const yThreshold = -29;
+    const zThreshold = 28;
+
+    if (ballPosition.y >= yThreshold && ballPosition.z <= zThreshold) {
+      updateMessage("Missed", "missed");
+    } else if (
+      ballPosition.y >= yThreshold - 2 &&
+      ballPosition.z <= zThreshold + 2
+    ) {
+      updateMessage("That was close!", "close");
+    } else {
+      updateMessage("Hit", "hit");
+    }
+  }
+
+  //click events
+
+  // Check if a key press corresponds to a ball and handle the hit accordingly
+
+  // Animation
   function animate() {
     requestAnimationFrame(animate);
-    // Perform the animation using GSAP
     renderer.render(scene, camera);
-
-    //controls.update();
   }
+
   animate();
 }
