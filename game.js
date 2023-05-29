@@ -27,10 +27,20 @@ export function game() {
 
   //geometry/material - ball
 
-  function createBall() {
-    const geometry = new THREE.SphereGeometry(5, 32, 16);
+  function createBall(xPos, key) {
+    const geometry = new THREE.SphereGeometry(4, 20, 10);
     const material = new THREE.MeshStandardMaterial({ color: 0xfffff });
     const sphere = new THREE.Mesh(geometry, material);
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === key) {
+        // Event for pressing the Q key
+        console.log("correct");
+        // Add your code here to handle the event
+      } else {
+        console.log("not right", event.key);
+      }
+    });
 
     //click events (ball)
     sphere.addEventListener("click", (event) => {
@@ -48,29 +58,49 @@ export function game() {
     });
     interactionManager.add(sphere);
 
-    sphere.position.set(0, 80, -100);
+    sphere.position.set(xPos, 200, -300);
     scene.add(sphere);
     gsap.to(sphere.position, {
-      z: 50,
-      y: -70,
-      x: 0,
-      duration: 3.5,
-      ease: "steps (12)",
+      z: 40,
+      y: -30,
+      x: xPos,
+      duration: 5,
+      onComplete: () => {
+        // Ball reached the destination
+        scene.remove(sphere);
+      },
+      ease: "none",
     });
   }
-  setInterval(createBall, 500);
+
+  const posArray = [-12, 0, 12];
+  const keyArray = ["a", "s", "d"];
+
+  setInterval(() => {
+    const randomNum = Math.floor(Math.random() * 3);
+    const randomPos = posArray[randomNum];
+    const key = keyArray[randomNum];
+    createBall(randomPos, key);
+  }, 500);
+
   //camera position
   camera.position.z = 100;
 
   //geometry/material - circle
-  const geometry2 = new THREE.RingGeometry(7, 6, 32);
+  const geometry2 = new THREE.RingGeometry(5, 4, 32);
   const material2 = new THREE.MeshBasicMaterial({
     color: 0xffff00,
     side: THREE.DoubleSide,
   });
-  const mesh2 = new THREE.Mesh(geometry2, material2);
-  mesh2.position.set(0, -25, 30);
-  scene.add(mesh2);
+  const leftCircle = new THREE.Mesh(geometry2, material2);
+  leftCircle.position.set(-12, -25, 30);
+  scene.add(leftCircle);
+  const midCircle = new THREE.Mesh(geometry2, material2);
+  midCircle.position.set(0, -25, 30);
+  scene.add(midCircle);
+  const rightCircle = new THREE.Mesh(geometry2, material2);
+  rightCircle.position.set(12, -25, 30);
+  scene.add(rightCircle);
 
   //interaction manager for click
   const interactionManager = new InteractionManager(
