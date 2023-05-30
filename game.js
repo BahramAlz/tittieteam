@@ -26,6 +26,8 @@ export function game() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
+  renderer.setClearColor(0x000000, 0);
+
   // Geometry/Material - Ball
   const activeBalls = [];
 

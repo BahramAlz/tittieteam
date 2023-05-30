@@ -1,6 +1,7 @@
 import { landing } from "./landing";
 import { game } from "./game";
 import { playSong } from "./song";
+import { tunnel } from "./reactiveTunnel";
 
 function main() {
   var container = document.getElementById("landingContainer");
@@ -18,7 +19,8 @@ function main() {
 
 function init() {
   document.getElementById("startBtn").remove();
-  playSong();
+  // playSong();
+  tunnel();
   landing();
   game();
 }
