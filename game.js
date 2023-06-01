@@ -151,5 +151,14 @@ export function game() {
 		requestAnimationFrame(animate);
 		renderer.render(scene, camera);
 	}
+
+	function resize() {
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
+		renderer.setSize(window.innerWidth, window.innerHeight);
+	}
+
+	window.addEventListener("resize", resize);
+
 	animate();
 }
