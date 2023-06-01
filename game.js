@@ -29,34 +29,36 @@ export function game() {
 		const material = new THREE.MeshStandardMaterial({ color: 0xfffff });
 		const sphere = new THREE.Mesh(geometry, material);
 		activeBalls.push({ sphere, key });
-		document.addEventListener("keydown", function (event) {
-			if (event.key === key) {
+		if (eventListenersActive) {
+			document.addEventListener("keydown", function (event) {
+				if (event.key === key) {
+					const activeBall = activeBalls.find((ball) => ball.key === key);
+					if (activeBall) {
+						checkBallHit(activeBall.sphere);
+					}
+				}
+			});
+			// ball click event
+			//interaction manager for click
+			const interactionManager = new InteractionManager(
+				renderer,
+				camera,
+				renderer.domElement
+			);
+			sphere.addEventListener("click", function (event) {
+				console.log(event);
 				const activeBall = activeBalls.find((ball) => ball.key === key);
-				if (activeBall) {
+				const ballPosition = activeBall.sphere.position;
+				const yThreshold = -15;
+				const zThreshold = 25;
+				console.log(ballPosition);
+				// making sure only balls close to the rings are "tappable"
+				if (ballPosition.y <= yThreshold && ballPosition.z >= zThreshold) {
 					checkBallHit(activeBall.sphere);
 				}
-			}
-		});
-		// ball click event
-		//interaction manager for click
-		const interactionManager = new InteractionManager(
-			renderer,
-			camera,
-			renderer.domElement
-		);
-		sphere.addEventListener("click", function (event) {
-			console.log(event);
-			const activeBall = activeBalls.find((ball) => ball.key === key);
-			const ballPosition = activeBall.sphere.position;
-			const yThreshold = -15;
-			const zThreshold = 25;
-			console.log(ballPosition);
-			// making sure only balls close to the rings are "tappable"
-			if (ballPosition.y <= yThreshold && ballPosition.z >= zThreshold) {
-				checkBallHit(activeBall.sphere);
-			}
-		});
-		interactionManager.add(sphere);
+			});
+			interactionManager.add(sphere);
+		}
 		sphere.position.set(xPos, 200, -300);
 		scene.add(sphere);
 		gsap.to(sphere.position, {
@@ -137,6 +139,11 @@ export function game() {
 			updateMessage("Hit", "hit");
 		}
 	}
+	// making the balls clickeable after 16s, when the game is supposed to start
+	let eventListenersActive = false;
+	setTimeout(() => {
+		eventListenersActive = true;
+	}, 16000);
 	//click events
 	// Check if a key press corresponds to a ball and handle the hit accordingly
 	// Animation
