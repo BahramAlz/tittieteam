@@ -97,3 +97,14 @@ body {
   text-align: center;
   color: red;
 }
+
+#scoreDisplay{
+  color: greenyellow;
+  font-size: xx-large;
+  position: fixed;
+  font-family: "Pangolin", cursive;
+  text-transform: uppercase;
+  margin-top: 3rem;
+  margin-left: 3rem;
+  
+}

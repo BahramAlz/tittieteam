@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "animate.css": "^4.1.1",
     "gsap": "^3.11.5",
     "three": "^0.152.2",
     "three.interactive": "^1.7.0"

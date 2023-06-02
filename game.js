@@ -1,6 +1,8 @@
 import * as THREE from "three";
 import { gsap } from "gsap";
 import { InteractionManager } from "three.interactive";
+import { addScore } from "./score";
+
 export function game() {
 	// Scene setup
 	const scene = new THREE.Scene();
@@ -135,8 +137,10 @@ export function game() {
 			ballPosition.z <= zThreshold + 2
 		) {
 			updateMessage("That was close!", "close");
+      addScore();
 		} else {
 			updateMessage("Hit", "hit");
+      addScore();
 		}
 	}
 	// making the balls clickeable after 16s, when the game is supposed to start
