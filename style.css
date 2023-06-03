@@ -31,7 +31,7 @@ body {
 
 #startTitle {
   color: #fff;
-  margin-top: 20vh;
+  margin-top: 10vh;
   justify-content: center;
   text-align: center;
 }
@@ -68,7 +68,7 @@ body {
 #greeting {
   color: white;
   text-align: center;
-  margin-top: 5vh;
+  margin-top: 2vh;
 }
 
 .messageContainer {
@@ -96,4 +96,91 @@ body {
   font-size: 4rem;
   text-align: center;
   color: red;
+}
+
+/* Landing Page */
+#landingTitle {
+  font-size: 3rem;
+  color: white;
+  text-align: center;
+  margin-top: 20vh;
+  text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+    -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+    0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  animation: glitch 1000ms infinite;
+}
+
+#landingInstructions {
+  font-size: 1.2rem;
+  color: white;
+  text-align: center;
+  margin-top: 5vh;
+}
+#landingCountdown {
+  font-size: 7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+    -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+    0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  color: white;
+  text-align: center;
+  margin-top: 2vh;
+  animation: glitch 400ms infinite;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 0.02em 0 0 rgba(255, 0, 0, 0.75),
+      -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+      0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  14% {
+    text-shadow: 0.02em 0 0 rgba(255, 0, 0, 0.75),
+      -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+      0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  15% {
+    text-shadow: -0.05em 0.025em 0 rgba(255, 0, 0, 0.75),
+      0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  49% {
+    text-shadow: -0.05em 0.025em 0 rgba(255, 0, 0, 0.75),
+      0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  50% {
+    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+      0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  99% {
+    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+      0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  100% {
+    text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75),
+      -0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+}
+
+#landingInstructionsMobile {
+  font-size: 3rem;
+  width: 80vw;
+}
+
+#landingInstructionsDesktop {
+  font-size: 2rem;
+  width: 60vw;
+}
+
+#landingInstructionsDesktop,
+#landingInstructionsMobile {
+  text-align: center;
+  color: white;
+
+  margin-top: 10vh;
+  line-height: 1.6;
 }
