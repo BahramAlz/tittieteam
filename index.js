@@ -19,6 +19,7 @@ function main() {
 
 function init() {
   document.getElementById("startBtn").remove();
+  document.getElementById("startTitle").remove();
   // playSong();
   tunnel();
   landing();
