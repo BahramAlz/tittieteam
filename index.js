@@ -1,35 +1,27 @@
 import { landing } from "./landing";
 import { game } from "./game";
 import { playSong } from "./song";
+import { tunnel } from "./reactiveTunnel";
 
 function main() {
   var container = document.getElementById("landingContainer");
   var button = document.createElement("button");
+  var title = document.createElement("h1");
+  title.innerHTML = "Enter the Titty Experience";
+  title.id = "startTitle";
+
+  container.appendChild(title);
   container.appendChild(button);
   button.innerHTML = "Start game";
   button.id = "startBtn";
   button.addEventListener("click", init);
-
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "q") {
-      // Event for pressing the Q key
-      console.log("Q key pressed");
-      // Add your code here to handle the event
-    } else if (event.key === "w") {
-      // Event for pressing the W key
-      console.log("W key pressed");
-      // Add your code here to handle the event
-    } else if (event.key === "e") {
-      // Event for pressing the E key
-      console.log("E key pressed");
-      // Add your code here to handle the event
-    }
-  });
 }
 
 function init() {
   document.getElementById("startBtn").remove();
-  playSong();
+  document.getElementById("startTitle").remove();
+  // playSong();
+  tunnel();
   landing();
   game();
 }
