@@ -219,7 +219,7 @@ export function tunnel() {
   const listener = new THREE.AudioListener();
 
   const audio = new THREE.Audio(listener);
-  const file = "./public/song.mp3";
+  const file = "./song.mp3";
 
   if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent)) {
     const loader = new THREE.AudioLoader();
