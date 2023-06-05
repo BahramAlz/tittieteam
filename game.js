@@ -100,7 +100,6 @@ class HitManager {
 
     this.rightCircle = new THREE.Mesh(geometry2, material2);
     this.rightCircle.position.set(12, 0, 30);
-    console.log(this.midCircle);
   }
 
   addEventListeners(activeBalls) {
@@ -120,23 +119,22 @@ class HitManager {
 
       targetAreaLeft.addEventListener("touchstart", (e) => {
         let detector = this.leftCircle;
-        console.log(detector);
         for (const ball of activeBalls) {
           if (
-            ball.sphere.position.z >= detector.position.z - 5 &&
-            ball.sphere.position.z <= detector.position.z + 5
+            ball.sphere.position.z >= detector.position.z - 9 &&
+            ball.sphere.position.z <= detector.position.z + 9
           ) {
-            console.log("hit");
+            this.displayMessage("hit", "hit");
           } else if (
-            ball.sphere.position.z >= detector.position.z - 5 - 5 && //prettier-ignore
-							ball.sphere.position.z <= detector.position.z + 5 + 5 // prettier-ignore
+            ball.sphere.position.z >= detector.position.z - 9 - 7 && //prettier-ignore
+							ball.sphere.position.z <= detector.position.z + 9 + 7 // prettier-ignore
           ) {
-            console.log("close one");
+            this.displayMessage("close", "close");
           } else if (
-            ball.sphere.position.z >= detector.position.z - 10 - 15 && //prettier-ignore
-							ball.sphere.position.z <= detector.position.z + 10 + 15 // prettier-ignore
+            ball.sphere.position.z >= detector.position.z - 16 - 7 && //prettier-ignore
+							ball.sphere.position.z <= detector.position.z + 16 + 7 // prettier-ignore
           ) {
-            console.log("miss");
+            this.displayMessage("miss", "missed");
           }
         }
       });
@@ -145,20 +143,20 @@ class HitManager {
         for (const ball of activeBalls) {
           if (detector.position.x === ball.sphere.position.x) {
             if (
-              ball.sphere.position.z >= detector.position.z - 5 &&
-              ball.sphere.position.z <= detector.position.z + 5
+              ball.sphere.position.z >= detector.position.z - 9 &&
+              ball.sphere.position.z <= detector.position.z + 9
             ) {
-              console.log("hit");
+              this.displayMessage("hit", "hit");
             } else if (
-              ball.sphere.position.z >= detector.position.z - 5 - 5 && //prettier-ignore
-							ball.sphere.position.z <= detector.position.z + 5 + 5 // prettier-ignore
+              ball.sphere.position.z >= detector.position.z - 9 - 7 && //prettier-ignore
+								ball.sphere.position.z <= detector.position.z + 9 + 7 // prettier-ignore
             ) {
-              console.log("close one");
+              this.displayMessage("close", "close");
             } else if (
-              ball.sphere.position.z >= detector.position.z - 10 - 15 && //prettier-ignore
-							ball.sphere.position.z <= detector.position.z + 10 + 15 // prettier-ignore
+              ball.sphere.position.z >= detector.position.z - 16 - 7 && //prettier-ignore
+								ball.sphere.position.z <= detector.position.z + 16 + 7 // prettier-ignore
             ) {
-              console.log("miss");
+              this.displayMessage("miss", "missed");
             }
           }
         }
@@ -168,20 +166,20 @@ class HitManager {
         for (const ball of activeBalls) {
           if (detector.position.x === ball.sphere.position.x) {
             if (
-              ball.sphere.position.z >= detector.position.z - 5 &&
-              ball.sphere.position.z <= detector.position.z + 5
+              ball.sphere.position.z >= detector.position.z - 9 &&
+              ball.sphere.position.z <= detector.position.z + 9
             ) {
-              console.log("hit");
+              this.displayMessage("hit", "hit");
             } else if (
-              ball.sphere.position.z >= detector.position.z - 5 - 5 && //prettier-ignore
-							ball.sphere.position.z <= detector.position.z + 5 + 5 // prettier-ignore
+              ball.sphere.position.z >= detector.position.z - 9 - 7 && //prettier-ignore
+								ball.sphere.position.z <= detector.position.z + 9 + 7 // prettier-ignore
             ) {
-              console.log("close one");
+              this.displayMessage("close", "close");
             } else if (
-              ball.sphere.position.z >= detector.position.z - 10 - 15 && //prettier-ignore
-							ball.sphere.position.z <= detector.position.z + 10 + 15 // prettier-ignore
+              ball.sphere.position.z >= detector.position.z - 16 - 7 && //prettier-ignore
+								ball.sphere.position.z <= detector.position.z + 16 + 7 // prettier-ignore
             ) {
-              console.log("miss");
+              this.displayMessage("miss", "missed");
             }
           }
         }
@@ -212,17 +210,17 @@ class HitManager {
               ball.sphere.position.z >= detector.position.z - 5 &&
               ball.sphere.position.z <= detector.position.z + 5
             ) {
-              console.log("hit");
+              this.displayMessage("HIT", "hit");
             } else if (
               ball.sphere.position.z >= detector.position.z - 5 - 5 && //prettier-ignore
 							ball.sphere.position.z <= detector.position.z + 5 + 5 // prettier-ignore
             ) {
-              console.log("close one");
+              this.displayMessage("THAT WAS CLOSE", "close");
             } else if (
               ball.sphere.position.z >= detector.position.z - 10 - 15 && //prettier-ignore
 							ball.sphere.position.z <= detector.position.z + 10 + 15 // prettier-ignore
             ) {
-              console.log("miss");
+              this.displayMessage("missed", "missed");
             }
           }
         }
@@ -234,6 +232,42 @@ class HitManager {
     scene.add(this.leftCircle);
     scene.add(this.midCircle);
     scene.add(this.rightCircle);
+  }
+
+  displayMessage(message, id) {
+    console.log("i am being called");
+    let isMessageDisplayed = false;
+    const container = document.querySelector(".messageContainer");
+    const messageElement = document.getElementById(id);
+    if (isMessageDisplayed) {
+      if (messageElement) {
+        container.removeChild(messageElement);
+      }
+      isMessageDisplayed = false;
+    }
+    const newMessageElement = document.createElement("div");
+    newMessageElement.id = id;
+    newMessageElement.textContent = message;
+    container.appendChild(newMessageElement);
+    isMessageDisplayed = true;
+    setTimeout(() => {
+      const messageToRemove = document.getElementById(id);
+      if (messageToRemove) {
+        container.removeChild(messageToRemove);
+      }
+      isMessageDisplayed = false;
+    }, 300);
+  }
+}
+
+class HitMessage {
+  constructor() {
+    this.messageEl = document.createElement("h2");
+    this.messageContainer = document.querySelector(".messageContainer");
+  }
+
+  displayMessage(message) {
+    this.messageEl.innerHTML = message;
   }
 }
 
