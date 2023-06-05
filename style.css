@@ -184,3 +184,38 @@ body {
   margin-top: 10vh;
   line-height: 1.6;
 }
+
+/*Mobile styling*/
+
+#targetAreaLeft {
+  background: #ffffff00;
+  width: 35.8vw;
+  height: 40vh;
+  top: 60%;
+  position: absolute;
+  margin-bottom: 0;
+  left: 0;
+  z-index: 5;
+}
+
+#targetAreaMid {
+  background: #91353500;
+  width: 28vw;
+  height: 40vh;
+  top: 60%;
+  position: absolute;
+  margin-bottom: 0;
+  left: 36.3%;
+  z-index: 5;
+}
+
+#targetAreaRight {
+  background: #48359100;
+  width: 35.5vw;
+  height: 40vh;
+  top: 60%;
+  position: absolute;
+  margin-bottom: 0;
+  right: 0;
+  z-index: 5;
+}

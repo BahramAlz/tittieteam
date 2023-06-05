@@ -1,6 +1,5 @@
 import * as THREE from "three";
 import { gsap } from "gsap";
-import { InteractionManager } from "three.interactive";
 
 class Game {
   constructor() {
@@ -14,7 +13,7 @@ class Game {
       0.1,
       1000
     );
-    camera.position.set(0, 50, 100);
+    camera.position.set(0, 30, 100);
     camera.lookAt(0, 0, -200);
 
     // Lights
@@ -71,7 +70,7 @@ class Ball {
     const geometry = new THREE.SphereGeometry(4, 20, 10);
     const material = new THREE.MeshStandardMaterial({ color: 0xfffff });
     this.sphere = new THREE.Mesh(geometry, material);
-    this.sphere.position.set(xPos, 0, -200);
+    this.sphere.position.set(xPos, 0, -400);
 
     gsap.to(this.sphere.position, {
       z: 40,
@@ -101,37 +100,134 @@ class HitManager {
 
     this.rightCircle = new THREE.Mesh(geometry2, material2);
     this.rightCircle.position.set(12, 0, 30);
+    console.log(this.midCircle);
   }
 
   addEventListeners(activeBalls) {
-    window.addEventListener("keydown", (e) => {
-      let detector = null;
+    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-      switch (e.key) {
-        case "a":
-          detector = this.leftCircle;
-          break;
-        case "s":
-          detector = this.midCircle;
-          break;
-        case "d":
-          detector = this.rightCircle;
-          break;
-        default:
-          return;
-      }
+    if (isMobile) {
+      const targetAreaLeft = document.createElement("div");
+      targetAreaLeft.id = "targetAreaLeft";
+      const targetAreaMid = document.createElement("div");
+      targetAreaMid.id = "targetAreaMid";
+      const targetAreaRight = document.createElement("div");
+      targetAreaRight.id = "targetAreaRight";
 
-      for (const ball of activeBalls) {
-        if (detector.position.x === ball.sphere.position.x) {
+      document.body.appendChild(targetAreaLeft);
+      document.body.appendChild(targetAreaMid);
+      document.body.appendChild(targetAreaRight);
+
+      targetAreaLeft.addEventListener("touchstart", (e) => {
+        let detector = this.leftCircle;
+        console.log(detector);
+        for (const ball of activeBalls) {
           if (
-            ball.sphere.position.z >= detector.position.z - 10 &&
-            ball.sphere.position.z <= detector.position.z + 10
+            ball.sphere.position.z >= detector.position.z - 5 &&
+            ball.sphere.position.z <= detector.position.z + 5
           ) {
             console.log("hit");
+          } else if (
+            ball.sphere.position.z >= detector.position.z - 5 - 5 && //prettier-ignore
+							ball.sphere.position.z <= detector.position.z + 5 + 5 // prettier-ignore
+          ) {
+            console.log("close one");
+          } else if (
+            ball.sphere.position.z >= detector.position.z - 10 - 15 && //prettier-ignore
+							ball.sphere.position.z <= detector.position.z + 10 + 15 // prettier-ignore
+          ) {
+            console.log("miss");
           }
         }
-      }
-    });
+      });
+      targetAreaMid.addEventListener("touchstart", (e) => {
+        let detector = this.midCircle;
+        for (const ball of activeBalls) {
+          if (detector.position.x === ball.sphere.position.x) {
+            if (
+              ball.sphere.position.z >= detector.position.z - 5 &&
+              ball.sphere.position.z <= detector.position.z + 5
+            ) {
+              console.log("hit");
+            } else if (
+              ball.sphere.position.z >= detector.position.z - 5 - 5 && //prettier-ignore
+							ball.sphere.position.z <= detector.position.z + 5 + 5 // prettier-ignore
+            ) {
+              console.log("close one");
+            } else if (
+              ball.sphere.position.z >= detector.position.z - 10 - 15 && //prettier-ignore
+							ball.sphere.position.z <= detector.position.z + 10 + 15 // prettier-ignore
+            ) {
+              console.log("miss");
+            }
+          }
+        }
+      });
+      targetAreaRight.addEventListener("touchstart", (e) => {
+        let detector = this.rightCircle;
+        for (const ball of activeBalls) {
+          if (detector.position.x === ball.sphere.position.x) {
+            if (
+              ball.sphere.position.z >= detector.position.z - 5 &&
+              ball.sphere.position.z <= detector.position.z + 5
+            ) {
+              console.log("hit");
+            } else if (
+              ball.sphere.position.z >= detector.position.z - 5 - 5 && //prettier-ignore
+							ball.sphere.position.z <= detector.position.z + 5 + 5 // prettier-ignore
+            ) {
+              console.log("close one");
+            } else if (
+              ball.sphere.position.z >= detector.position.z - 10 - 15 && //prettier-ignore
+							ball.sphere.position.z <= detector.position.z + 10 + 15 // prettier-ignore
+            ) {
+              console.log("miss");
+            }
+          }
+        }
+      });
+
+      // lägga till toRightevent listeners
+    } else {
+      window.addEventListener("keydown", (e) => {
+        let detector = null;
+
+        switch (e.key) {
+          case "a":
+            detector = this.leftCircle;
+            break;
+          case "s":
+            detector = this.midCircle;
+            break;
+          case "d":
+            detector = this.rightCircle;
+            break;
+          default:
+            return;
+        }
+
+        for (const ball of activeBalls) {
+          if (detector.position.x === ball.sphere.position.x) {
+            if (
+              ball.sphere.position.z >= detector.position.z - 5 &&
+              ball.sphere.position.z <= detector.position.z + 5
+            ) {
+              console.log("hit");
+            } else if (
+              ball.sphere.position.z >= detector.position.z - 5 - 5 && //prettier-ignore
+							ball.sphere.position.z <= detector.position.z + 5 + 5 // prettier-ignore
+            ) {
+              console.log("close one");
+            } else if (
+              ball.sphere.position.z >= detector.position.z - 10 - 15 && //prettier-ignore
+							ball.sphere.position.z <= detector.position.z + 10 + 15 // prettier-ignore
+            ) {
+              console.log("miss");
+            }
+          }
+        }
+      });
+    }
   }
 
   addToScene(scene) {

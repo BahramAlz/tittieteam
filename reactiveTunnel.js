@@ -8,12 +8,12 @@ export function tunnel() {
   let scene = new THREE.Scene();
   scene.background = new THREE.Color(0x000000);
 
-  const fov = 9;
+  const fov = 20;
   const aspect = 2;
   const near = 1;
   const far = 500;
   let camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-  camera.position.set(3, 70 / 2, 0);
+  camera.position.set(3, 10 / 2, 0);
   camera.lookAt(far, -18, 0);
 
   const roadWidth = 30;
