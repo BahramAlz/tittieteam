@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html>
-	<head lang="en">
-		<meta charset="utf-8" />
-		<title>My first three.js app</title>
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<canvas id="tunnel"></canvas>
-		<h2 id="scoreDisplay">Score: 0</h2>
-		<div id="landingContainer"></div>
-		<div class="messageContainer"></div>
+  <head lang="en">
+    <meta charset="utf-8" />
+    <title>My first three.js app</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <video id="tunnel" autoplay="true" loop muted>
+        <source src="./tunnel.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <h2 id="scoreDisplay">Score: 0</h2>
+    <div id="landingContainer"></div>
+    <div class="messageContainer"></div>
 
-		<script type="module" src="/index.js"></script>
-		<!-- <script type="module" src="/song.js"></script> -->
-	</body>
+    <script type="module" src="/index.js"></script>
+    <!-- <script type="module" src="/song.js"></script> -->
+  </body>
 </html>

@@ -24,7 +24,7 @@ class Game {
 		pointLight.position.set(50, 50, 100);
 		this.scene.add(pointLight);
 		// Renderer
-		const renderer = new THREE.WebGLRenderer();
+		const renderer = new THREE.WebGLRenderer({ alpha: true });
 		renderer.setSize(window.innerWidth, window.innerHeight);
 		document.body.appendChild(renderer.domElement);
 		renderer.setClearColor(0x000000, 0);
