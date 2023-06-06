@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { gsap } from "gsap";
+import { addScore, decreaseScore } from "./score,js";
 
 class Game {
 	constructor() {
@@ -214,16 +215,19 @@ class HitManager {
 							ball.sphere.position.z <= detector.position.z + 5
 						) {
 							this.displayMessage("HIT", "hit");
+							addScore("hit");
 						} else if (
 							ball.sphere.position.z >= detector.position.z - 5 - 5 && //prettier-ignore
 							ball.sphere.position.z <= detector.position.z + 5 + 5 // prettier-ignore
 						) {
 							this.displayMessage("THAT WAS CLOSE", "close");
+							addScore("close");
 						} else if (
 							ball.sphere.position.z >= detector.position.z - 10 - 20 && //prettier-ignore
 							ball.sphere.position.z <= detector.position.z + 10 + 15 // prettier-ignore
 						) {
 							this.displayMessage("missed", "missed");
+							decreaseScore("miss");
 						}
 					}
 				}
