@@ -25,6 +25,7 @@ class Game {
 		this.scene.add(pointLight);
 		// Renderer
 		const renderer = new THREE.WebGLRenderer({ alpha: true });
+		renderer.domElement.id = "threeCanvas";
 		renderer.setSize(window.innerWidth, window.innerHeight);
 		document.body.appendChild(renderer.domElement);
 		renderer.setClearColor(0x000000, 0);
@@ -264,17 +265,6 @@ class HitManager {
 			}
 			isMessageDisplayed = false;
 		}, 300);
-	}
-}
-
-class HitMessage {
-	constructor() {
-		this.messageEl = document.createElement("h2");
-		this.messageContainer = document.querySelector(".messageContainer");
-	}
-
-	displayMessage(message) {
-		this.messageEl.innerHTML = message;
 	}
 }
 

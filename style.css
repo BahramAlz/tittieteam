@@ -10,15 +10,15 @@ body {
 	overflow: hidden;
 }
 
-#tunnel{
+#tunnel {
 	position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 100vw;
-  min-height: 100vh;
-  width: auto;
-  height: auto;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	min-width: 100vw;
+	min-height: 100vh;
+	width: auto;
+	height: auto;
 	z-index: -1;
 }
 
@@ -39,7 +39,7 @@ body {
 	text-align: center;
 }
 
-#startBtn {
+#fullGameBtn {
 	height: 60px;
 	z-index: 20;
 	width: 200px;
@@ -63,7 +63,7 @@ body {
 	transition: ease-out 0.4s;
 }
 
-#startBtn:hover {
+#fullGameBtn:hover {
 	box-shadow: inset 0 100px 0 0 rgb(69, 222, 58);
 	color: #ff0080;
 }
@@ -235,4 +235,17 @@ body {
 	margin-bottom: 0;
 	right: 0;
 	z-index: 5;
+}
+
+#outroContainer {
+	background-color: rgba(8, 9, 7, 0.939);
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+	top: 0;
+	height: 100vh;
+	width: 100vw;
+	color: white;
 }
