@@ -128,16 +128,19 @@ class HitManager {
             ball.sphere.position.z <= detector.position.z + 10
           ) {
             this.displayMessage("hit", "hit");
+            addScore("hit");
           } else if (
             ball.sphere.position.z >= detector.position.z - 10 - 7 && //prettier-ignore
 							ball.sphere.position.z <= detector.position.z + 10 + 7 // prettier-ignore
           ) {
             this.displayMessage("close", "close");
+            addScore("close");
           } else if (
             ball.sphere.position.z >= detector.position.z - 17 - 7 && //prettier-ignore
 							ball.sphere.position.z <= detector.position.z + 17 + 7 // prettier-ignore
           ) {
             this.displayMessage("miss", "missed");
+            decreaseScore("miss");
           }
         }
       });
@@ -151,16 +154,19 @@ class HitManager {
               ball.sphere.position.z <= detector.position.z + 9
             ) {
               this.displayMessage("hit", "hit");
+              addScore("hit");
             } else if (
               ball.sphere.position.z >= detector.position.z - 9 - 7 && //prettier-ignore
 								ball.sphere.position.z <= detector.position.z + 9 + 7 // prettier-ignore
             ) {
               this.displayMessage("close", "close");
+              addScore("close");
             } else if (
               ball.sphere.position.z >= detector.position.z - 16 - 7 && //prettier-ignore
 								ball.sphere.position.z <= detector.position.z + 16 + 7 // prettier-ignore
             ) {
               this.displayMessage("miss", "missed");
+              decreaseScore("miss");
             }
           }
         }
@@ -175,16 +181,19 @@ class HitManager {
               ball.sphere.position.z <= detector.position.z + 9
             ) {
               this.displayMessage("hit", "hit");
+              addScore("hit");
             } else if (
               ball.sphere.position.z >= detector.position.z - 9 - 7 && //prettier-ignore
 								ball.sphere.position.z <= detector.position.z + 9 + 7 // prettier-ignore
             ) {
               this.displayMessage("close", "close");
+              addScore("close");
             } else if (
               ball.sphere.position.z >= detector.position.z - 16 - 7 && //prettier-ignore
 								ball.sphere.position.z <= detector.position.z + 16 + 7 // prettier-ignore
             ) {
               this.displayMessage("miss", "missed");
+              decreaseScore("miss");
             }
           }
         }
