@@ -6,8 +6,11 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <canvas id="tunnel"></canvas>
-    <div id="landingContainer"></div>
+    <video id="tunnel" autoplay="true" loop muted>
+      <source src="./tunnel.mp4" type="video/mp4" />
+    </video>
+
+    <h2 id="scoreDisplay">Score: 0</h2>
     <div class="messageContainer"></div>
 
     <script type="module" src="/index.js"></script>

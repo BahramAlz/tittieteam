@@ -1,17 +1,15 @@
 import { gsap } from "gsap";
 
-// Rest of your code here
-
 //playing the animation with values from audio
-const container = document.getElementById("landingContainer");
 
 function greeting() {
   const h1 = document.createElement("h1");
   h1.textContent = "The Game starts in:";
   h1.id = "landingTitle";
-  container.appendChild(h1);
+  introContainer.appendChild(h1);
   setTimeout(displayCountdown);
   setTimeout(displayInstructions, 200);
+  console.log("greeting is being called");
 }
 
 function displayInstructions() {
@@ -28,7 +26,7 @@ function playingMobile() {
   const instructions = document.createElement("p");
   instructions.style.opacity = 0;
   instructions.id = "landingInstructionsMobile";
-  container.appendChild(instructions);
+  introContainer.appendChild(instructions);
 
   const textStrings = [
     "Hello and welcome to the Mobile Experience of the <br> Yung Titties Game",
@@ -59,7 +57,7 @@ function playingDesktop() {
   const instructions = document.createElement("p");
   instructions.style.opacity = 0;
   instructions.id = "landingInstructionsDesktop";
-  container.appendChild(instructions);
+  introContainer.appendChild(instructions);
 
   const textStrings = [
     "Hello and welcome to the Desktop Experience of the <br>Yung Titties Game",
@@ -91,7 +89,7 @@ function displayCountdown() {
 
   const countdownDisplay = document.createElement("p");
   countdownDisplay.textContent = countdown;
-  container.appendChild(countdownDisplay);
+  introContainer.appendChild(countdownDisplay);
   countdownDisplay.id = "landingCountdown";
 
   var countdownInterval = setInterval(function () {
@@ -107,10 +105,14 @@ function displayCountdown() {
 }
 
 function removeGreeting() {
-  container.remove();
+  introContainer.remove();
 }
 
 export function landing() {
+  const introContainer = document.createElement("div");
+  introContainer.id = "introContainer";
+  document.body.appendChild(introContainer);
+
   function runForSixteenSeconds() {
     greeting();
     setTimeout(function () {
@@ -118,4 +120,5 @@ export function landing() {
     }, 16000); // 5000 milliseconds = 5 seconds
   }
   runForSixteenSeconds();
+  console.log("landing is being called");
 }

@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { gsap } from "gsap";
+import { addScore, decreaseScore } from "./score.js";
 
 class Game {
   constructor() {
@@ -23,7 +24,8 @@ class Game {
     pointLight.position.set(50, 50, 100);
     this.scene.add(pointLight);
     // Renderer
-    const renderer = new THREE.WebGLRenderer();
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.domElement.id = "threeCanvas";
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
     renderer.setClearColor(0x000000, 0);
@@ -118,27 +120,29 @@ class HitManager {
       document.body.appendChild(targetAreaRight);
 
       targetAreaLeft.addEventListener("touchstart", (e) => {
+        e.preventDefault();
         let detector = this.leftCircle;
         for (const ball of activeBalls) {
           if (
-            ball.sphere.position.z >= detector.position.z - 9 &&
-            ball.sphere.position.z <= detector.position.z + 9
+            ball.sphere.position.z >= detector.position.z - 10 &&
+            ball.sphere.position.z <= detector.position.z + 10
           ) {
             this.displayMessage("hit", "hit");
           } else if (
-            ball.sphere.position.z >= detector.position.z - 9 - 7 && //prettier-ignore
-							ball.sphere.position.z <= detector.position.z + 9 + 7 // prettier-ignore
+            ball.sphere.position.z >= detector.position.z - 10 - 7 && //prettier-ignore
+							ball.sphere.position.z <= detector.position.z + 10 + 7 // prettier-ignore
           ) {
             this.displayMessage("close", "close");
           } else if (
-            ball.sphere.position.z >= detector.position.z - 16 - 7 && //prettier-ignore
-							ball.sphere.position.z <= detector.position.z + 16 + 7 // prettier-ignore
+            ball.sphere.position.z >= detector.position.z - 17 - 7 && //prettier-ignore
+							ball.sphere.position.z <= detector.position.z + 17 + 7 // prettier-ignore
           ) {
             this.displayMessage("miss", "missed");
           }
         }
       });
       targetAreaMid.addEventListener("touchstart", (e) => {
+        e.preventDefault();
         let detector = this.midCircle;
         for (const ball of activeBalls) {
           if (detector.position.x === ball.sphere.position.x) {
@@ -162,6 +166,7 @@ class HitManager {
         }
       });
       targetAreaRight.addEventListener("touchstart", (e) => {
+        e.preventDefault();
         let detector = this.rightCircle;
         for (const ball of activeBalls) {
           if (detector.position.x === ball.sphere.position.x) {
@@ -186,7 +191,7 @@ class HitManager {
       });
 
       // lägga till toRightevent listeners
-    } else {
+    } else if (!isMobile) {
       window.addEventListener("keydown", (e) => {
         let detector = null;
 
@@ -211,16 +216,19 @@ class HitManager {
               ball.sphere.position.z <= detector.position.z + 5
             ) {
               this.displayMessage("HIT", "hit");
+              addScore("hit");
             } else if (
               ball.sphere.position.z >= detector.position.z - 5 - 5 && //prettier-ignore
 							ball.sphere.position.z <= detector.position.z + 5 + 5 // prettier-ignore
             ) {
               this.displayMessage("THAT WAS CLOSE", "close");
+              addScore("close");
             } else if (
-              ball.sphere.position.z >= detector.position.z - 10 - 15 && //prettier-ignore
+              ball.sphere.position.z >= detector.position.z - 10 - 20 && //prettier-ignore
 							ball.sphere.position.z <= detector.position.z + 10 + 15 // prettier-ignore
             ) {
               this.displayMessage("missed", "missed");
+              decreaseScore("miss");
             }
           }
         }
@@ -257,17 +265,6 @@ class HitManager {
       }
       isMessageDisplayed = false;
     }, 300);
-  }
-}
-
-class HitMessage {
-  constructor() {
-    this.messageEl = document.createElement("h2");
-    this.messageContainer = document.querySelector(".messageContainer");
-  }
-
-  displayMessage(message) {
-    this.messageEl.innerHTML = message;
   }
 }
 
