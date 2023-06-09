@@ -106,16 +106,38 @@ body {
 }
 
 #scoreDisplay {
-  color: greenyellow;
   font-size: xx-large;
   position: absolute;
-  top: 2rem;
-  left: 50%;
-  transform: translate(-50%);
   font-family: "Pangolin", cursive;
   text-transform: uppercase;
   width: max-content;
   text-align: center;
+  font-size: 40px;
+  font-weight: 600;
+  color: #7d2ae8;
+}
+
+/* PROGRESS BAR */
+#circularProgress {
+  position: relative;
+  height: 140px;
+  width: 140px;
+  border-radius: 50%;
+  background: conic-gradient(#7d2ae8 3.6deg, #ededed 0deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+#circularProgress::before {
+  content: "";
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background-color: #fff;
 }
 
 .messageContainer #hit {
@@ -265,7 +287,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   top: 0;
   height: 100vh;
   width: 100vw;

@@ -13,6 +13,12 @@ export function playSong() {
 	// ^^ connecting the gainnode, which makes it possible for us to manipulate the gain, ex:
 	gainNode.gain.value = 0.1; //setting the volume to 0.1 percent
 
+	const volumeBar = document.getElementById("volumeBar");
+    volumeBar.addEventListener("input", function () {
+      const volume = parseFloat(this.value);
+      gainNode.gain.value = volume;
+    });
+
 	audioCtx.resume(); // the ctx isnt active by default, we need to resume it
 	audioEl.play();
 }

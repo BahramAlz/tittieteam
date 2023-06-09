@@ -1,3 +1,5 @@
+let circularProgress = document.getElementById("circularProgress");
+
 let score = 0;
 const maxScore = 100;
 
@@ -5,6 +7,7 @@ export function addScore(scoreType) {
   if (scoreType === "hit") {
     if (score === 0) {
       score += 30;
+      circularProgress.style.background = `conic-gradient(#7d2ae8 ${score}deg, #ededed 0deg)`;
     } else if (score > 100) {
       score = Math.floor(score / 100) * 100;
     } else {
@@ -12,6 +15,7 @@ export function addScore(scoreType) {
     }
   } else if (scoreType === "close") {
     score *= 0.7;
+    circularProgress.style.background = `conic-gradient(#7d2ae8 ${score}deg, #ededed 0deg)`;
   }
 
   // Restrict score to be within the range of 0 to 100
@@ -29,9 +33,9 @@ export function decreaseScore() {
 
 function updateScoreDisplay(score) {
   const percentage = Math.floor((score / maxScore) * 100);
-
   const scoreDisplay = document.getElementById("scoreDisplay");
-  scoreDisplay.textContent = "Score: " + percentage + "%";
+
+  scoreDisplay.textContent = `${percentage}%`;
 }
 
 export function resetScore() {
