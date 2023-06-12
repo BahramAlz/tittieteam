@@ -105,58 +105,78 @@ body {
   transform: translate(-50%, -20%);
 }
 
+/* PROGRESS BAR */
+
 #scoreDisplay {
-  font-size: xx-large;
-  position: absolute;
   font-family: "Pangolin", cursive;
-  text-transform: uppercase;
   width: max-content;
   text-align: center;
   font-size: 40px;
-  font-weight: 600;
-  color: #7d2ae8;
-}
-
-/* PROGRESS BAR */
-#circularProgress {
-  position: relative;
-  height: 140px;
-  width: 140px;
-  border-radius: 50%;
-  background: conic-gradient(#7d2ae8 3.6deg, #ededed 0deg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  left: 50%;
+  color: rgb(69, 222, 58);
   transform: translate(-50%);
+  left: 50%;
+  position: absolute;
 }
 
-#circularProgress::before {
-  content: "";
-  position: absolute;
+#circularProgress {
+  --fill: rgb(69, 222, 58);
+  width: 200px;
   height: 100px;
-  width: 100px;
+  position: absolute;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+  overflow: hidden;
+  color: var(--fill);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-sizing: border-box;
+  transform: translate(-50%);
+  left: 50%;
+  top: 7rem;
+}
+
+#circularProgress::after {
+  content: "";
+  width: 200px;
+  height: 200px;
+  border: 30px solid;
+  border-color: rgba(0, 0, 0, 0.9) rgba(0, 0, 0, 0.9) var(--fill) var(--fill);
+  position: absolute;
   border-radius: 50%;
-  background-color: #fff;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  transform: rotate(calc(1deg * (-45 + var(--percentage) * 1.8)));
+  transition: transform 0.5s ease-in-out;
 }
 
 .messageContainer #hit {
   justify-content: center;
-  font-size: 4rem;
+  font-size: 3rem;
   text-align: center;
   color: greenyellow;
 }
 .messageContainer #close {
   justify-content: center;
-  font-size: 4rem;
+  font-size: 3rem;
   text-align: center;
   color: yellow;
 }
 .messageContainer #missed {
   justify-content: center;
-  font-size: 4rem;
+  font-size: 3rem;
   text-align: center;
   color: red;
+}
+
+.messageContainer #hit,
+.messageContainer #close,
+.messageContainer #missed {
+  top: 5rem;
+  position: absolute;
+  transform: translate(-50%);
 }
 
 /* Landing Page */

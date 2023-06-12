@@ -230,7 +230,7 @@ class HitManager {
               ball.sphere.position.z >= detector.position.z - 5 - 5 && //prettier-ignore
 							ball.sphere.position.z <= detector.position.z + 5 + 5 // prettier-ignore
             ) {
-              this.displayMessage("THAT WAS CLOSE", "close");
+              this.displayMessage("CLOSE", "close");
               addScore("close");
             } else if (
               ball.sphere.position.z >= detector.position.z - 10 - 20 && //prettier-ignore
