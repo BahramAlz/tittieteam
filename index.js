@@ -81,10 +81,9 @@ export function shortInit() {
     setTimeout(() => {
       outro();
       stopSong();
-    }, 20000); // ändra till 47000
+    }, 47000); // ändra till 47000
   }
   runFor30Seconds();
-  
 }
 
 main();

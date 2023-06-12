@@ -24,9 +24,10 @@ export function outro() {
   outroTitle.id = "outroTitle";
   longButton.id = "outroBtn";
   shortButton.id = "outroBtn";
+  paragraph.id = "outroText";
 
   outroTitle.innerHTML = "Congrats!"; // corrected assignment
-  paragraph.innerHTML = `You've done it! You finished with an accuracy of ${finalScore}. Here is the presave link. Do you want to play again?`;
+  paragraph.innerHTML = `You've done it! <br></br> You finished with an accuracy of ${finalScore}. Here is the presave link. Do you want to play again?`;
 
   longButton.innerHTML = "Full game";
   shortButton.innerHTML = "30 Seconds";
