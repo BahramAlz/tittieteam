@@ -5,6 +5,7 @@ import { outro } from "./outro";
 
 export const shortGameButton = document.createElement("button");
 export const fullGameButton = document.createElement("button");
+export const exitButton = document.createElement("button");
 
 function main() {
   const title = document.createElement("h1");
@@ -19,6 +20,7 @@ function main() {
   //whole game button
   container.appendChild(title);
   container.appendChild(fullGameButton);
+
   fullGameButton.innerHTML = "Full song";
   fullGameButton.id = "fullGameBtn";
   fullGameButton.addEventListener("click", () => {
@@ -34,6 +36,13 @@ function main() {
     document.getElementById("landingContainer").remove();
     shortInit();
   });
+
+  container.appendChild(exitButton);
+  exitButton.id = "exitBtn";
+  exitButton.innerHTML = "Exit Game";
+  exitButton.addEventListener("click", () => {
+    document.location.href = "https://titty-landing.vercel.app/";
+  });
 }
 
 export function init() {
@@ -46,6 +55,9 @@ export function init() {
   if (document.getElementById("startTitle")) {
     document.getElementById("startTitle").remove();
   }
+  if (document.getElementById("exitBtn")) {
+    document.getElementById("exitBtn").remove();
+  }
 
   playSong();
   landing();
@@ -56,7 +68,7 @@ export function init() {
       console.log("full game ends");
       outro();
       stopSong();
-    }, 180000); // ändra till 180000
+    }, 1100); // ändra till 180000
   }
   runForFullSong();
 }
@@ -70,6 +82,9 @@ export function shortInit() {
   }
   if (document.getElementById("startTitle")) {
     document.getElementById("startTitle").remove();
+  }
+  if (document.getElementById("exitBtn")) {
+    document.getElementById("exitBtn").remove();
   }
 
   game();

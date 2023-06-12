@@ -18,24 +18,28 @@ export function outro() {
   const paragraph = document.createElement("p");
   const longButton = document.createElement("button");
   const shortButton = document.createElement("button");
+  const backButton = document.createElement("button");
   const scoreDisplay = document.getElementById("scoreDisplay");
   const finalScore = scoreDisplay.innerText;
   console.log(JSON.stringify(finalScore));
   outroTitle.id = "outroTitle";
   longButton.id = "outroBtn";
   shortButton.id = "outroBtn";
+  backButton.id = "backBtn";
   paragraph.id = "outroText";
 
   outroTitle.innerHTML = "Congrats!"; // corrected assignment
-  paragraph.innerHTML = `You've done it! <br></br> You finished with an accuracy of ${finalScore}. Here is the presave link. Do you want to play again?`;
+  paragraph.innerHTML = `You finished with an accuracy of ${finalScore}. <br></br> Do you want to play again?`;
 
-  longButton.innerHTML = "Full game";
+  longButton.innerHTML = "Full Game";
   shortButton.innerHTML = "30 Seconds";
+  backButton.innerHTML = "Exit Game";
 
   outroContainer.appendChild(outroTitle);
   outroContainer.appendChild(paragraph);
   outroContainer.appendChild(longButton);
   outroContainer.appendChild(shortButton);
+  outroContainer.appendChild(backButton);
 
   longButton.addEventListener("click", () => {
     restart();
@@ -44,5 +48,9 @@ export function outro() {
   shortButton.addEventListener("click", () => {
     restart();
     shortInit();
+  });
+
+  backButton.addEventListener("click", () => {
+    document.location.href = "https://titty-landing.vercel.app/";
   });
 }
