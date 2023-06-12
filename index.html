@@ -9,11 +9,25 @@
     <video id="tunnel" autoplay="true" loop muted>
       <source src="./tunnel.mp4" type="video/mp4" />
     </video>
+    <div id="controlsContainer">
+      <input
+        type="range"
+        id="volumeBar"
+        min="0"
+        max="1"
+        step="0.01"
+        value="0.1"
+      />
+    </div>
+    <div id="circularProgress" style="--percentage: 0;">
+      <span id="scoreDisplay">0%</span>
+    </div>
 
-    <h2 id="scoreDisplay">Score: 0</h2>
     <div class="messageContainer"></div>
 
     <script type="module" src="/index.js"></script>
-    <!-- <script type="module" src="/song.js"></script> -->
+    <!-- <script type="module" src="/song.js">
+    </script>
+    -->
   </body>
 </html>

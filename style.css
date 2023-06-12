@@ -105,36 +105,78 @@ body {
   transform: translate(-50%, -20%);
 }
 
+/* PROGRESS BAR */
+
 #scoreDisplay {
-  color: greenyellow;
-  font-size: xx-large;
-  position: absolute;
-  top: 2rem;
-  left: 50%;
-  transform: translate(-50%);
   font-family: "Pangolin", cursive;
-  text-transform: uppercase;
   width: max-content;
   text-align: center;
+  font-size: 40px;
+  color: rgb(69, 222, 58);
+  transform: translate(-50%);
+  left: 50%;
+  position: absolute;
+}
+
+#circularProgress {
+  --fill: rgb(69, 222, 58);
+  width: 200px;
+  height: 100px;
+  position: absolute;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+  overflow: hidden;
+  color: var(--fill);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-sizing: border-box;
+  transform: translate(-50%);
+  left: 50%;
+  top: 7rem;
+}
+
+#circularProgress::after {
+  content: "";
+  width: 200px;
+  height: 200px;
+  border: 30px solid;
+  border-color: rgba(0, 0, 0, 0.9) rgba(0, 0, 0, 0.9) var(--fill) var(--fill);
+  position: absolute;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  transform: rotate(calc(1deg * (-45 + var(--percentage) * 1.8)));
+  transition: transform 0.5s ease-in-out;
 }
 
 .messageContainer #hit {
   justify-content: center;
-  font-size: 4rem;
+  font-size: 3rem;
   text-align: center;
   color: greenyellow;
 }
 .messageContainer #close {
   justify-content: center;
-  font-size: 4rem;
+  font-size: 3rem;
   text-align: center;
   color: yellow;
 }
 .messageContainer #missed {
   justify-content: center;
-  font-size: 4rem;
+  font-size: 3rem;
   text-align: center;
   color: red;
+}
+
+.messageContainer #hit,
+.messageContainer #close,
+.messageContainer #missed {
+  top: 5rem;
+  position: absolute;
+  transform: translate(-50%);
 }
 
 /* Landing Page */
@@ -265,7 +307,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   top: 0;
   height: 100vh;
   width: 100vw;

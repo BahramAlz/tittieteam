@@ -1,6 +1,6 @@
 import { landing } from "./landing";
 import { game } from "./game";
-import { playSong } from "./song";
+import { playSong, stopSong } from "./song";
 import { outro } from "./outro";
 
 export const shortGameButton = document.createElement("button");
@@ -55,7 +55,8 @@ export function init() {
     setTimeout(() => {
       console.log("full game ends");
       outro();
-    }, 20000);
+      stopSong();
+    }, 180000); // ändra till 180000
   }
   runForFullSong();
 }
@@ -79,9 +80,11 @@ export function shortInit() {
     console.log("game starts");
     setTimeout(() => {
       outro();
-    }, 20000);
+      stopSong();
+    }, 20000); // ändra till 47000
   }
   runFor30Seconds();
+  
 }
 
 main();

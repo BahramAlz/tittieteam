@@ -3,7 +3,6 @@ import { resetScore } from "./score";
 import { stopSong } from "./song";
 
 function restart() {
-  stopSong();
   resetScore();
   document.getElementById("threeCanvas").remove();
   document.getElementById("outroContainer").remove();
