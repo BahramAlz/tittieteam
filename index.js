@@ -68,7 +68,7 @@ export function init() {
       console.log("full game ends");
       outro();
       stopSong();
-    }, 1100); // ändra till 180000
+    }, 180000); // ändra till 180000
   }
   runForFullSong();
 }
