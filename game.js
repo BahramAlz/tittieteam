@@ -78,7 +78,7 @@ class Ball {
       z: 40,
       y: 0,
       x: xPos,
-      duration: 0.5 * 4,
+      duration: 0.5 * 3.8,
       onComplete: () => {
         onComplete(this);
       },
