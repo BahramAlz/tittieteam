@@ -66,8 +66,8 @@ export function init() {
     console.log("full game starts");
     setTimeout(() => {
       console.log("full game ends");
-      outro();
       stopSong();
+      outro();
     }, 180000); // ändra till 180000
   }
   runForFullSong();
@@ -94,8 +94,8 @@ export function shortInit() {
   function runFor30Seconds() {
     console.log("game starts");
     setTimeout(() => {
-      outro();
       stopSong();
+      outro();
     }, 47000); // ändra till 47000
   }
   runFor30Seconds();
