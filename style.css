@@ -118,7 +118,7 @@ body {
 }
 
 /* PROGRESS BAR */
-#circularProgress {
+/* #circularProgress {
   position: relative;
   height: 140px;
   width: 140px;
@@ -138,7 +138,7 @@ body {
   width: 100px;
   border-radius: 50%;
   background-color: #fff;
-}
+} */
 
 .messageContainer #hit {
   justify-content: center;
@@ -291,4 +291,35 @@ body {
   height: 100vh;
   width: 100vw;
   color: white;
+}
+
+.semi-donut {
+  --percentage: 0;
+  --fill: #ff3d00;
+  width: 300px;
+  height: 150px;
+  position: relative;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+  overflow: hidden;
+  color: var(--fill);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.semi-donut:after {
+  content: "";
+  width: 300px;
+  height: 300px;
+  border: 50px solid;
+  border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) var(--fill) var(--fill);
+  position: absolute;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  transform: rotate(calc(1deg + (var(--percentage) * 1.8deg)));
+  transition: transform 0.5s ease-in; /* Added transition for smooth animation */
 }
